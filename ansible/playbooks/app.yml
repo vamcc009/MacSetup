@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+
+  - name: installing apps using cask
+    homebrew_cask:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - caffeine            # Application that prevent your Mac from automatically going to sleep, dimming the screen or starting screen savers.
+      - sourcetree          # GUI Client for Subversion and Git from Atlassian
+      - atom

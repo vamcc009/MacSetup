@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+
+- include: common.yml
+- include: zsh.yml
+- include: ql.yml
+- include: build.yml
+- include: deploy.yml
+- include: app.yml
+- include: completions.yml
+- include: pip.yml
+- include: ci.yml
+- include: node.yml
+- include: mysql.yml
+- include: jenv.yml
+- include: hashi.yml
+- include: list.yml

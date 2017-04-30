@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+
+    - name: shell integration for iTerm2 
+      command: curl -L https://iterm2.com/misc/install_shell_integration.sh | bash

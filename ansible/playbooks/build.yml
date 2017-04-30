@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+
+  - name: installing build tools
+    homebrew:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - gradle           # Build system based on the Groovy language
+      - groovy           # Groovy: a Java-based scripting language
+      - maven             # Java-based project management
+      - maven-completion  # maven-bash-completion

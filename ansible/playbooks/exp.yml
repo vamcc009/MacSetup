@@ -1,0 +1,252 @@
+---
+- hosts: localhost
+  gather_facts: no
+  vars:
+    - brew_install:
+        - diff-so-fancy   # Good-lookin' diffs with diff-highlight and more
+        - checkstyle      # Check Java source against a coding standard
+        - docker-gen      # Search tool like grep, but optimized for programmersGenerate files from docker container metadata
+        - asciinema       # Record and share terminal sessions
+        - caddy           # Alternative general-purpose HTTP/2 web server
+        - colordiff       # Color-highlighted diff(1) output
+        - tig             # Text interface for Git repositories
+        - hh              # Bash and zsh history suggest box
+        - links           # Lynx-like WWW browser that supports tables, menus, etc.
+        - ncdu            # NCurses Disk Usage
+        - lftp            # Sophisticated file transfer program
+        - vnstat          # Console-based network traffic monitor
+        - wemux           # Enhances tmux's to provide multiuser terminal multiplexing
+        - scmpuff         # Adds numbered shortcuts for common git commands
+        - s-search        # Web search from the terminal
+        - zsync           # File transfer program
+        - kommit          # More detailed commit messages without committing!
+        - dependency-check # OWASP Dependency Check
+        - terraform-inventory # Terraform State → Ansible Dynamic Inventory
+        - lynis           # Security and system auditing tool to harden systems
+        - mkdocs          # Project documentation with Markdown
+        - archey          # Graphical system information display for OS X
+        - thefuck         # Programatically correct mistyped console commands
+        - prometheus      # Service monitoring system and time series database
+        - align           # Text column alignment filter
+        - liquidprompt    # Adaptive prompt for bash and zsh shells
+        - git-subrepo     # Git Submodule Alternative
+        - repo            # Repository tool for Android development
+        - psgrep          # Shortcut for the 'ps aux | grep' idiom
+        - pgrep           # pgrep, pkill, and pfind for OpenBSD and Darwin (OS X)
+        - bfg             # Remove large files or passwords from Git history like git-filter-branch
+        - fzf             # Command-line fuzzy finder written in Go
+        - pandoc          # Swiss-army knife of markup format conversion
+        - editorconfig    # Maintain consistent coding style between multiple editors
+        - certstrap       # Tools to bootstrap CAs, certificate requests, and signed certificates
+        - miller          # Like sed, awk, cut, join & sort for name-indexed data such as CSV
+        - dwdiff          # Diff that operates at the word level
+        - direnv          # Load/unload environment variables based on $PWD
+        - dockward        # Port forwarding tool for Docker containers
+        - tidy-html5      # Granddaddy of HTML tools, with support for modern standards
+        - fswatch         # Monitor a directory for changes and run a shell command
+        - httping         # Ping-like tool for HTTP requests
+        - ctail           # Tool for operating tail across large clusters of machines
+        - multitail       # Tail multiple files in one terminal simultaneously
+        - bitrise         # Command-line automation tool
+        - nethogs         # Net top tool grouping bandwidth per process
+        - nload           # Realtime console network usage monitor
+        - sops            # Editor of encrypted files
+        - git-plus        # Git utilities: git multi, git relation, git old-branches, git recent
+        - sslscan         # Test SSL/TLS enabled services to discover supported cipher suites
+        - dasht           # Search API docs offline, in your terminal or browser
+        - git-standup     # Git extension to generate reports for standup meetings
+        - fpp             # CLI program that accepts piped input and presents files for selection
+        - cgrep           # Context-aware grep for source code
+        - the_platinum_searcher # Multi-platform code-search similar to ack and ag
+        - mas             # Mac App Store command-line interface
+        - wallpaper       # Get or set the desktop wallpaper
+        - codequery       # Index, query, or search C, C++, Java, Python, Ruby, or Go code
+        - parallel        # GNU parallel shell command
+        - git-utils       # Various Git helper utilities
+        - gibo            # Access GitHub's .gitignore boilerplates
+        - neovim          # Ambitious Vim-fork focused on extensibility and agility
+        - grc                   # Generic Colouriser
+        - fasd                  # CLI tool for quick access to files and directories
+        - path-extractor        # path-extractor
+        - fish            # Fish Shell
+        - cheat           # Create and view interactive cheat sheets for *nix commands
+        - bats            # TAP-compliant test framework for Bash scripts
+        - desk            # Lightweight workspace manager for the shell
+        - prips           # Print the IP addresses in a given range
+        - watchman        # Watch files and take action when they change
+        - pyenv-virtualenv # Pyenv plugin to manage virtualenv
+        - entr            # Run arbitrary commands when files change
+        - fortune     # Infamous electronic fortune-cookie generator
+        - cowsay      # Configurable talking characters in ASCII art
+        - contacts    # Command-line tool to access OS X's Contacts - Full Installation of XCode is a prerequisite 'sudo xcodebuild -license'
+        - mackup     # Keep your Mac's application settings in sync
+        - jfrog-cli-go # command-line interface for Jfrog Artifactory and Bintray
+        - ansible-cmdb # Generates static HTML overview page from Ansible facts
+        - csshx       # Cluster ssh tool for Terminal.app
+        - axel        # Light UNIX download accelerator
+        - xhyve       # lightweight OS X virtualization solution based on FreeBSD's bhyve
+        - ag          # Code searcher similar to ack
+        - pup         # Parse HTML at the command-line - http://www.compciv.org/unix-tools/
+        - csvfix      # CSVfix is a tool for manipulating CSV data
+        - p7zip       # 7-Zip (high compression file archiver) implementation
+        - pixz        # Parallel, indexed, xz compressor
+        - trash        # CLI tool that moves files or folder to the trash
+        - jq          # JSON Processor
+        - rename      # Switching/Transforms files
+        - shellcheck  # Static analysis and lint tool, for (ba)sh scripts
+        - git-crypt   # Enable transparent encryption/decryption of files in a git repo
+        - lighttpd    # Small memory footprint, flexible web-server
+        - graphviz    # Graph visualization software from AT&T and Bell Labs
+        - xmlstarlet  # XML command-line utilities
+        - gpg         # GNU Pretty Good Privacy (PGP) package
+        - mr              # Multiple Repository management tool
+        - cpanm           # Get, unpack, build, and install modules from CPAN
+        - midnight-commander  # Terminal-based visual file manager
+        - yadm            # Yet Another Dotfiles Manager
+        - doitlive        # Replay stored shell commands for live presentations
+        - tomcat-native   # Lets Tomcat use some native resources for performance
+        - sshrc           # Bring your .bashrc, .vimrc, etc. with you when you SSH
+        - stunnel         # SSL tunneling program
+        - mosh            # Remote terminal application
+        - zplug           # The next-generation plugin manager for zsh
+        - github-markdown-toc # Easy TOC creation for GitHub README.md (in go)
+        - gost            # Simple command-line utility for easily creating Gists for Github.
+        - go              # Go programming environment
+        - gitlab-ci-multi-runner # The official GitLab CI runner written in Go
+        - docker-clean   # Clean Docker containers, images, networks, and volumes
+        - ghq            # Remote repository management made easy
+        - peco           # Simplistic interactive filtering tool
+        - dockviz        # Visualizing docker data
+        - dos2unix       # Convert text between DOS, UNIX, and Mac formats
+        - neofetch       # fast, highly customisable system info script
+        - mycli          # CLI for MySQL with auto-completion and syntax highlighting
+        - mplayer        # UNIX movie player
+        - mpv             # Free, open source, and cross-platform media player
+        - mpg123          # MP3 player for Linux and UNIX
+        - translate-shell # Command-line translator using Google Translate and more
+        - resty           # Command-line REST client that can be used in pipelines
+        - jsawk           # Like awk, but for JSON, using JavaScript objects and arrays
+        - artifactory-pro  # artifactory professional (Needs license)
+        - openresty       # Fast web app server  (homebrew/nginx tap)
+        - passpie         # Manage login credentials from the terminal
+        - git-lfs         # Git extension for versioning large files
+        - rpm             # Standard unix software packaging tool
+        - asciidoc        # Formatter/translator for text files to numerous formats
+        - exercism        # command-line tool to interact with exercism.io
+        - xonsh           # Python-ish, BASHwards-compatible shell language and command prompt
+        - you-get         # Dumb downloader that scrapes the web
+        - iproute2mac     # CLI wrapper for basic network utilities on Mac OS X - ip command
+        - cloc            # Statistics utility to count lines of code
+        - snort           # Flexible Network Intrustion Detection
+        - gor             # Real-time HTTP traffic replay tool written in Go
+        - bup             # Backup Tool
+        - weighttp        # Webserver benchmarking tool that supports multithreading
+        - nmap            # Port scanning utility for large networks
+        - homeshick       # Git dotfiles synchronizer written in bash
+        - pick            # Utility to choose one option from a set of choices
+        - tmux-mem-cpu-load  # CPU, RAM memory, and load monitor for use with tmux
+        - html-xml-utils   # Tools for manipulating HTML and XML files
+        - git-flow        # Extensions to follow Vincent Driessen's branching model
+        - git-flow-avh    # AVH edition of git-flow
+        - percol          # Interactive grep tool
+        - git-town        # High-level command-line interface for Git
+        - assh            # Advanced SSH config - Regex, aliases, gateways, includes and dynamic hosts
+        - mysqltuner      # Increase performance and stability of a MySQL installation
+        - tmate           # Instant terminal sharing
+        - todolist        # Very fast, simple task manager for the command-line, based upon GTD
+        - pwgen           # Password generator
+        - pre-commit      # Framework for managing multi-language pre-commit hooks
+        - xml2            # Makes XML and HTML more amenable to classic UNIX text tools
+        - grip            # GitHub Markdown previewer
+        - pass            # Password manager
+        - pv              # Monitor data's progress through a pipe
+        - certigo         # Utility to examine and validate certificates in a variety of formats
+        - m-cli           # Swiss Army Knife for Mac OS X
+        - bmon            # Interface bandwidth monitor
+        - highlight       # Convert source code to formatted text with syntax highlighting
+        - minisign        # Sign files & verify signatures. Works with signify in OpenBSD.
+        - osquery         # SQL powered operating system instrumentation and analytics
+        - zpaq            # Incremental, journaling command-line archiver
+        - lnav            # Curses-based tool for viewing and analyzing log files
+        - git-octopus     # The continuous merge workflow
+        - moreutils       # Collection of tools that nobody wrote when UNIX was young
+        - httpie          # User-friendly cURL replacement (command-line HTTP client)
+        - mdp             # Command-line based markdown presentation tool
+        - flake8          # Lint your Python code for style and logical errors
+        - direvent        # Monitors events in the file system directories
+        - truncate        # truncates a file to a given size
+        - selenium-server-standalone  # Browser automation for testing purposes
+        - noti            # Trigger notifications when a process completes
+        - colorsvn        # Subversion output colorizer
+        - maven-shell     # Shell for Maven
+        - khal            # CLI calendar application
+        - gitup           # Update multiple git repositories at once
+        - nginx           # HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
+        - gron            # Make JSON greppable
+        - mailhog         # Web and API based SMTP testing tool
+        - md5sha1sum      # Hash utilities
+        - zbackup         # Globally-deduplicating backup tool (based on ideas in rsync)
+        - shyaml          # command-line YAML parser
+        - httpstat        # Curl statistics made simple
+        - httpdiff        # Compare two HTTP(S) responses
+        - launch          # Command-line launcher for OS X, in the spirit of `open`
+        - brightness      # Change OS X display brightness from the command-line
+        - devtodo         # Command-line task lists
+        - screenfetch     # Generate ASCII art with terminal, shell, and OS info
+        - cmatrix         # Console Matrix
+        - hostess         # Idempotent command-line utility for managing your /etc/hosts file
+        - borg            # Terminal based search engine for bash commands
+        - modd            # Flexible tool for responding to filesystem changes
+        - ripgrep         # Search tool like grep and The Silver Searcher.
+        - armor           # Simple HTTP server, supports HTTP/2 and auto TLS
+        - sslyze          # SSL scanner
+        - dvm             # Docker Version Manager
+        - git-series      # Track changes to a patch series over time
+        - git-extras      # Small git utilities
+        - consul-backinator  # Consul backup and restoration application
+        - csvtomd         # CSV to Markdown table converter
+        - rmlint          # Extremely fast tool to remove dupes and other lint from your filesystem
+        - q               # Treat text as a database
+        - terragrunt      # Thin wrapper for Terraform e.g. for locking state
+        - locateme        # Find your location using Apple's geolocation services
+        - gitless         # Simplified version control system on top of git
+        - sift            # Fast and powerful open source alternative to grep
+        - pick            # Utility to choose one option from a set of choices
+        - loc             # Count lines of code quickly
+        - ssh-audit       # SSH server auditing
+        - git-review      # Submit git branches to gerrit for review
+        - terraform-provisioner-ansible # Ansible provisioner for Terraform
+        - mdv             # Styled terminal markdown viewer
+        - jid             # Json incremental digger
+        - fping           # Scriptable ping program for checking if multiple hosts are up
+        - molecule        # Automated testing for Ansible roles
+
+
+    - brew_cask_install:
+        - cakebrew        # https://www.cakebrew.com/
+        - staruml         # http://staruml.io/
+        - isolator        # Isolator - http://willmore.eu/software/isolator/
+        - gitkraken       # Git GUI Browser
+        - sshfs           # https://osxfuse.github.io/
+        - apache-directory-studio # Apache Directory Studio
+        - webex-nbr-player # Webex Network Recording player
+        - fish             # Fish Shell
+        - filebeat         # File harvester, used to fetch log files and feed them into logstash
+        - ssh-tunnel-manager # SSH Tunnel Manager
+        - brackets        # http://brackets.io - Editor like Sublime, Atom
+        - grandperspective # GrandPerspective http://grandperspectiv.sourceforge.net/
+        
+
+
+  tasks:
+    - name: installing tools using homebrew
+      homebrew:
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ brew_install }}"
+
+    - name: installing tools using cask
+      homebrew_cask:
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ brew_cask_install }}"

@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+
+  - name: installing jenv
+    homebrew:
+      name: jenv
+      state: present
+
+  - name: create a .jenv/versions directory
+    file:
+      path: ~/.jenv/versions
+      state: directory
+
+  - name: configuring jvms in jenv
+    command:  jenv add /Library/Java/JavaVirtualMachines/"{{ item }}"/Contents/Home
+    with_lines: ls /Library/Java/JavaVirtualMachines/
+    ignore_errors: yes

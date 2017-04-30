@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+
+  - name: installing quicklook plugins
+    homebrew_cask:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - qlcolorcode         # Preview source code files with syntax highlighting
+      - qlstephen           # Preview plain text files without a file extension. Example: README, CHANGELOG, etc.
+      - qlmarkdown          # Preview Markdown files
+      - quicklook-json      # Preview JSON files
+      - qlprettypatch       # Preview .patch files
+      - qldds               # QuickLook DDS
+      - qlgradle            # Preview for .gradle files
+      - qlplayground        # Preview for Swift files
+      - quicklook-csv       # Preview CSV files
+      - betterzipql         # Preview archives
+      - webpquicklook       # Preview WebP images
+      - qlimagesize         # Preview Display image size and resolution
+      - suspicious-package  # Preview the contents of a standard Apple installer package
+      - epubquicklook       # An EPUB QuickLook generator and Spotlight importer for Mac OS X

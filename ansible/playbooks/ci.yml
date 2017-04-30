@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+
+  - name: installing continous integration
+    homebrew:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - jenkins            # CI Server
+      - sonar              # Static Code Analysis Tool
+      - artifactory        # Binary Repository Manager from JFrog

@@ -1,0 +1,26 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+
+  - name: installing hashicorp tools
+    homebrew:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - packer
+      - consul
+      - consul-template
+      - vault
+      - nomad
+      - terraform
+      - packer-completion
+
+  - name: installing hashicorp cask
+    homebrew_cask:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - vagrant
+      - otto
+      - serf

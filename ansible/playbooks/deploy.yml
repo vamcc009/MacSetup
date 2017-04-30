@@ -1,0 +1,38 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+
+  - name: verify if virtualbox already installed or not
+    shell: "echo $(virtualbox --help | head -n 1 | awk '{print $NF}')"
+    ignore_errors: yes
+    register: virtualbox_version
+
+  - name: installing virtualBox and extension-pack
+    homebrew_cask:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - virtualbox                # VirtualBox is a powerful x86 and AMD64/Intel64 virtualization product
+      - virtualbox-extension-pack # VirtualBox Extension Pack
+    when: not virtualbox_version.stdout
+
+  - name: installing vagrant      # Vagrant is a tool for building and distributing development environments.
+    homebrew_cask:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - vagrant
+      - vagrant-manager
+    #  - docker-beta
+
+  - name: installing vagrant-completion
+    homebrew:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - vagrant-completion # Shell completion for Vagrant
+
+  - name: .
+    debug: msg="Virtualbox {{ virtualbox_version.stdout }} already deployed, Uninstall and run macsetup again for latest version"
+    when: virtualbox_version.stdout

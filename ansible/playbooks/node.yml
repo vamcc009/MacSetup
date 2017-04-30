@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+
+  - name: install nodejs
+    homebrew:
+      name: "{{item}}"
+      state: present
+    with_items:
+      - nodejs
+      - phantomjs
+
+  - name: install grunt, bower, karma
+    npm:
+      name: "{{item}}"
+      global: yes
+    with_items:
+      - grunt-cli
+      - bower
+      - karma
+

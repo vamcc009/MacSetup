@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+
+  - shell: echo $(brew list; brew cask list)
+    register: installed_tools
+
+  - name: listing installed tools using homebrew
+    debug: msg="{{ installed_tools.stdout }}"
+
+  - name: homebrew cask cleanup
+    command: brew cask cleanup

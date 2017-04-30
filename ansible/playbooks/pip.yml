@@ -1,0 +1,31 @@
+--- # ansible/playbooks/pip.yml - install basic pip tools
+- hosts: localhost
+  gather_facts: no
+  tasks:
+
+    - name: installing python
+      homebrew:
+        name: python
+        state: present
+
+    - name: install pip tools
+      pip:
+        name: "{{ item }}"
+        extra_args: --user
+        state: present
+      with_items:
+        - virtualenv
+        - cryptography
+        - ansible-tower-cli # towercli.yml - https://github.com/ansible/tower-cli
+        - docker-py
+        - ansible-lint
+        - flake8
+        - lxml
+        - python-jenkins
+        - neovim
+        - yolk
+
+    - name: add to PATH
+      lineinfile:
+        dest: ~/.zshrc
+        line: "export PATH=$PATH:~/Library/Python/2.7/bin"

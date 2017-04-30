@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  gather_facts: yes
+
+  tasks:
+    - name: create a dummy file
+      file:
+        path: "{{ ansible_env.HOME }}/block.txt"
+        state: touch
+
+    - name: insert a block in a file
+      blockinfile:
+         dest: "{{ ansible_env.HOME }}/block.txt"
+         block: |
+           This is a test block
+           Second line in a test block

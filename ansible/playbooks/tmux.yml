@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+
+  - name: installing activator using homebrew
+    homebrew:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - tmux                  # Terminal multiplexe
+      - tmuxinator-completion # Shell completion for Tmuxinator
+      - tmux-cssh             # TMUX with a "ClusterSSH"-like behavior
+      - tmux-mem-cpu-load     # CPU, RAM memory, and load monitor for use with tmux
+      - wemux                 # Enhances tmux's to provide multiuser terminal multiplexing

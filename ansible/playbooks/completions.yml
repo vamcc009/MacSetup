@@ -1,0 +1,29 @@
+--- #  ansible/playbooks/completions.yml
+- hosts: localhost
+  gather_facts: no
+  tasks:
+
+  - name: installing completions
+    homebrew:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - stormssh-completion
+      - maven-completion
+      - launchctl-completion
+      - grunt-completion
+      - brew-cask-completion
+      - docker-completion
+      - gem-completion
+      - open-completion
+      - packer-completion
+      - pip-completion
+      - sonar-completion
+      - tmuxinator-completion
+      - vagrant-completion
+      - zsh-completions
+    ignore_errors: yes
+
+
+
+

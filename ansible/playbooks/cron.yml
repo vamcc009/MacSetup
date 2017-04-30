@@ -1,0 +1,9 @@
+--- # cron to run bubu.sh daily
+- hosts: localhost
+  gather_facts: yes
+  tasks:
+    - name: cron to update homebrew
+      cron:
+        name: bubu
+        special_time: hourly
+        job: "{{ ansible_env.HOME }}/bin/bubu.sh >> ~/bin/bubu.log 2>&1"

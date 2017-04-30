@@ -1,0 +1,83 @@
+---
+- hosts: localhost
+  gather_facts: no
+  vars_prompt:
+    - name: ansible_become_pass
+      prompt: "Enter system password"
+      private: yes
+  tasks:
+
+  - name: verify if virtualbox already installed or not
+    shell: "echo $(virtualbox --help | head -n 1 | awk '{print $NF}')"
+    ignore_errors: yes
+    register: virtualbox_version
+
+  - name: installing virtualBox and extension-pack
+    homebrew_cask:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - virtualbox                # VirtualBox is a powerful x86 and AMD64/Intel64 virtualization product
+      - virtualbox-extension-pack # VirtualBox Extension Pack
+    when: not virtualbox_version.stdout
+
+  - name: installing vagrant      # Vagrant is a tool for building and distributing development environments.
+    homebrew_cask:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - vagrant
+      - vagrant-manager
+
+  - name: installing vagrant-completion
+    homebrew:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - vagrant-completion # Shell completion for Vagrant
+
+  - name: .
+    debug: msg="Virtualbox {{ virtualbox_version.stdout }} already deployed, Uninstall and run macsetup again for latest version"
+    when: virtualbox_version.stdout
+
+  - name: installing hashicorp tools
+    homebrew:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - vault
+
+  - name: installing hashicorp cask
+    homebrew_cask:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - vagrant
+
+  - name: creating plugin facts
+    set_fact:
+      vagrant_plugins:
+        - vagrant-hostsupdater
+        - vagrant-vbguest
+        - vagrant-auto_network
+        - vagrant-hostmanager
+        - vagrant-host-shell
+        - vagrant-cachier
+        - vagrant-flow
+        - vagrant-pristine
+
+  - name: install vagrant plugins
+    command: vagrant plugin install {{ item }}
+    with_items: "{{ vagrant_plugins }}"
+
+  - name: get the username running the deploy
+    command: whoami
+    register: username
+
+  - name: changing permissions for hosts file
+    become: yes
+    file:
+      path: /etc/hosts
+      owner: "{{ username.stdout }}"
+      group: staff
+      mode: 0644

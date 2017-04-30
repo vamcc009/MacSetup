@@ -1,0 +1,40 @@
+---
+- hosts: localhost
+  gather_facts: yes
+  # connection: local
+  tasks:
+
+     - name: check if .bashrc file exists
+       stat:
+         path: "{{ ansible_env.HOME }}/.bashrc"
+       register: bashrc
+       delegate_to: localhost
+
+     - name: check if .zshrc file exists
+       stat:
+         path: "{{ ansible_env.HOME }}/.zshrc"
+       register: zshrc
+       delegate_to: localhost
+
+     - name: export docker env variables in .bashrc
+       blockinfile:
+         dest: "{{ ansible_env.HOME }}/.bashrc"
+         state: present
+         block: |
+           export DOCKER_HOST="tcp://10.0.15.25:2376"
+           export DOCKER_API_VERSION=1.22
+       when: bashrc.stat.exists == true
+       delegate_to: localhost
+
+     - name: export docker env variables in .zshrc
+       blockinfile:
+         dest: "{{ ansible_env.HOME }}/.zshrc"
+         state: present
+         block: |
+           export DOCKER_HOST="tcp://10.0.15.25:2376"
+           export DOCKER_API_VERSION=1.22
+       when: zshrc.stat.exists == true
+       delegate_to: localhost
+
+
+
